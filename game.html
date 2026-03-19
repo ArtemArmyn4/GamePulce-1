@@ -45,6 +45,21 @@
 
         <!-- Кнопка избранного -->
         <button id="favoriteBtn" class="btn" style="margin: 20px auto; display: block;">❤️ Добавить в избранное</button>
+
+        <!-- Кнопка копирования ссылки -->
+        <button onclick="copyGameLink()" class="btn" style="margin: 0 auto 20px; display: block; font-size: 1rem;">🔗 Скопировать ссылку</button>
+        <script>
+        function copyGameLink() {
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(() => {
+                const btn = event.target;
+                btn.textContent = '✅ Скопировано!';
+                setTimeout(() => btn.textContent = '🔗 Скопировать ссылку', 2000);
+            }).catch(() => {
+                prompt('Скопируй ссылку:', url);
+            });
+        }
+        </script>
     </div>
 
     <!-- Скрипты -->

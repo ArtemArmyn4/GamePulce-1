@@ -1384,3 +1384,354 @@ body:has(#gamePage) nav {
 @media (max-width: 700px) {
     .achievements-grid { grid-template-columns: 1fr; }
 }
+/* ============================================
+   УЛУЧШЕННЫЙ ВИЗУАЛ — GAMEPULSE 2.0
+   ============================================ */
+
+/* --- Навбар — стеклянный эффект --- */
+nav {
+    background: rgba(15, 18, 28, 0.75) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid rgba(255,122,24,0.15) !important;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.3) !important;
+}
+
+/* --- Логотип --- */
+.logo {
+    background: linear-gradient(135deg, var(--accent), #ffb347);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 12px rgba(255,122,24,0.4));
+}
+
+/* --- Кнопки навбара --- */
+.nav-links button,
+.nav-links a {
+    border-radius: 10px !important;
+    transition: background 0.2s, color 0.2s, transform 0.15s !important;
+}
+.nav-links button:hover,
+.nav-links a:hover {
+    background: rgba(255,122,24,0.12) !important;
+    color: var(--accent) !important;
+    transform: translateY(-1px) !important;
+}
+
+/* --- Кнопки авторизации --- */
+.auth-buttons button {
+    padding: 0.35rem 1rem !important;
+    border-radius: 20px !important;
+    border: 1px solid var(--border-light) !important;
+    transition: all 0.2s !important;
+}
+.auth-buttons button:hover {
+    border-color: var(--accent) !important;
+    color: var(--accent) !important;
+    background: rgba(255,122,24,0.08) !important;
+}
+
+/* --- Поисковая строка --- */
+.search-box {
+    background: rgba(255,255,255,0.05) !important;
+    border: 1px solid rgba(255,255,255,0.12) !important;
+    border-radius: 14px !important;
+    transition: all 0.3s !important;
+}
+.search-box:focus-within {
+    background: rgba(255,122,24,0.06) !important;
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px rgba(255,122,24,0.1) !important;
+}
+
+/* --- Главная кнопка .btn --- */
+.btn {
+    border-radius: 12px !important;
+    clip-path: none !important;
+    transition: all 0.25s ease !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+.btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+.btn:hover::before { opacity: 1; }
+.btn:hover {
+    transform: translateY(-2px) scale(1.02) !important;
+    box-shadow: 0 8px 25px rgba(255,122,24,0.35) !important;
+}
+.btn:active { transform: translateY(0) scale(0.98) !important; }
+
+/* --- Карточки игр --- */
+.card {
+    border-radius: 14px !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s !important;
+    border: 2px solid transparent !important;
+}
+.card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 14px;
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.card:hover {
+    transform: translateY(-10px) scale(1.03) !important;
+    border-color: var(--accent) !important;
+    box-shadow: 0 20px 50px rgba(255,122,24,0.25), 0 0 0 1px rgba(255,122,24,0.1) !important;
+}
+.card:hover::after { opacity: 1; }
+
+/* --- Feature карточки --- */
+.feature {
+    border-radius: 20px !important;
+    background: rgba(255,255,255,0.03) !important;
+    border: 1px solid rgba(255,255,255,0.07) !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+.feature::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,122,24,0.06) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+.feature:hover::before { opacity: 1; }
+.feature:hover {
+    transform: translateY(-6px) !important;
+    border-color: rgba(255,122,24,0.3) !important;
+    box-shadow: 0 12px 40px rgba(255,122,24,0.12) !important;
+}
+
+/* --- About карточки --- */
+.about-card {
+    border-radius: 20px !important;
+    background: rgba(255,255,255,0.03) !important;
+    border: 1px solid rgba(255,255,255,0.07) !important;
+    transition: all 0.3s !important;
+}
+.about-card:hover {
+    transform: translateY(-5px) !important;
+    border-color: rgba(255,122,24,0.3) !important;
+    box-shadow: 0 10px 30px rgba(255,122,24,0.1) !important;
+}
+
+/* --- Модальное окно --- */
+.modal-content {
+    border-radius: 24px !important;
+    border: 1px solid rgba(255,122,24,0.25) !important;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,122,24,0.1) !important;
+    background: rgba(10,15,25,0.98) !important;
+    backdrop-filter: blur(20px) !important;
+}
+
+/* --- Профиль карточки --- */
+.profile-card {
+    border-radius: 18px !important;
+    background: rgba(255,255,255,0.03) !important;
+    border: 1px solid rgba(255,255,255,0.07) !important;
+    transition: border-color 0.2s !important;
+}
+.profile-card:hover {
+    border-color: rgba(255,122,24,0.2) !important;
+}
+
+/* --- Поля ввода --- */
+.profile-input,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+.pc-field input {
+    border-radius: 10px !important;
+    background: rgba(255,255,255,0.04) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    transition: border-color 0.2s, box-shadow 0.2s !important;
+    color: var(--text) !important;
+}
+.profile-input:focus,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+.pc-field input:focus {
+    outline: none !important;
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px rgba(255,122,24,0.1) !important;
+}
+
+/* --- Кнопка Наверх --- */
+#backToTop {
+    position: fixed !important;
+    bottom: 2rem !important;
+    right: 2rem !important;
+    width: 46px !important;
+    height: 46px !important;
+    background: var(--accent) !important;
+    color: #000 !important;
+    border: none !important;
+    border-radius: 50% !important;
+    font-size: 1.2rem !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    z-index: 9999 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: translateY(16px) !important;
+    transition: opacity 0.3s, transform 0.3s, box-shadow 0.3s !important;
+    box-shadow: 0 4px 18px rgba(255,122,24,0.4) !important;
+}
+#backToTop.visible {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+}
+#backToTop:hover {
+    transform: translateY(-3px) scale(1.1) !important;
+    box-shadow: 0 8px 28px rgba(255,122,24,0.5) !important;
+}
+
+/* --- Тосты --- */
+#toastContainer {
+    position: fixed !important;
+    bottom: 5.5rem !important;
+    right: 2rem !important;
+    z-index: 10000 !important;
+    display: flex !important;
+    flex-direction: column-reverse !important;
+    gap: 0.6rem !important;
+    pointer-events: none !important;
+}
+.gp-toast {
+    background: rgba(10,15,25,0.95) !important;
+    color: var(--text) !important;
+    border: 1px solid var(--accent) !important;
+    border-radius: 14px !important;
+    padding: 0.8rem 1.2rem !important;
+    font-size: 0.92rem !important;
+    min-width: 220px !important;
+    max-width: 320px !important;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5) !important;
+    backdrop-filter: blur(12px) !important;
+    pointer-events: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.6rem !important;
+    animation: toastIn 0.3s ease forwards !important;
+}
+.gp-toast.success { border-color: #00c864 !important; }
+.gp-toast.error   { border-color: #ff4444 !important; }
+.gp-toast.out     { animation: toastOut 0.3s ease forwards !important; }
+
+/* --- Фильтры жанра --- */
+.genre-btn {
+    background: rgba(255,255,255,0.04) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    color: var(--text) !important;
+    padding: 0.4rem 1rem !important;
+    border-radius: 30px !important;
+    font-size: 0.87rem !important;
+    cursor: pointer !important;
+    transition: all 0.2s !important;
+    white-space: nowrap !important;
+}
+.genre-btn:hover {
+    border-color: var(--accent) !important;
+    color: var(--accent) !important;
+    background: rgba(255,122,24,0.08) !important;
+}
+.genre-btn.active {
+    background: var(--accent) !important;
+    border-color: var(--accent) !important;
+    color: #000 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 2px 14px rgba(255,122,24,0.35) !important;
+}
+
+/* --- Секции --- */
+.section {
+    position: relative;
+}
+
+/* --- Заголовки секций --- */
+.title {
+    position: relative !important;
+    display: inline-block !important;
+}
+
+/* --- Dropdown меню --- */
+.dropdown-content {
+    border-radius: 14px !important;
+    border: 1px solid rgba(255,122,24,0.15) !important;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4) !important;
+    background: rgba(10,15,25,0.95) !important;
+    backdrop-filter: blur(16px) !important;
+    overflow: hidden !important;
+}
+.dropdown-content button {
+    border-radius: 0 !important;
+    transition: background 0.15s, color 0.15s, padding-left 0.15s !important;
+}
+.dropdown-content button:hover {
+    background: rgba(255,122,24,0.12) !important;
+    color: var(--accent) !important;
+    padding-left: 1.4rem !important;
+    transform: none !important;
+}
+
+/* --- Pc-actions кнопки --- */
+.pc-actions button {
+    border-radius: 12px !important;
+    transition: all 0.2s !important;
+}
+.pc-actions button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(255,122,24,0.3) !important;
+}
+
+/* --- Close btn --- */
+.close-btn {
+    border-radius: 12px !important;
+    clip-path: none !important;
+    transition: all 0.2s !important;
+}
+.close-btn:hover {
+    transform: scale(1.04) !important;
+    box-shadow: 0 6px 20px rgba(255,122,24,0.3) !important;
+}
+
+/* --- Звёздочка избранного --- */
+.favorite-star {
+    transition: transform 0.2s, color 0.2s, background 0.2s !important;
+}
+.favorite-star:hover {
+    transform: scale(1.25) !important;
+}
+
+/* --- Footer --- */
+footer {
+    background: rgba(0,0,0,0.2) !important;
+    border-top: 1px solid rgba(255,122,24,0.1) !important;
+}
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,122,24,0.3); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,122,24,0.6); }

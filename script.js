@@ -908,3 +908,70 @@ window.showToast = function (msg, type, duration) {
     }
 
 }());
+// ===== КНОПКА НАВЕРХ =====
+(function () {
+    var btn = document.getElementById('backToTop');
+    if (!btn) return;
+    window.addEventListener('scroll', function () {
+        btn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+}());
+
+// ===== ТОСТЫ =====
+window.showToast = function (msg, type, duration) {
+    type = type || 'info';
+    duration = duration || 3000;
+    var icons = { success: '✅', error: '❌', info: '⚡' };
+    var box = document.getElementById('toastContainer');
+    if (!box) return;
+    var t = document.createElement('div');
+    t.className = 'gp-toast ' + type;
+    t.innerHTML = '<span>' + (icons[type] || '⚡') + '</span><span>' + msg + '</span>';
+    box.appendChild(t);
+    setTimeout(function () {
+        t.classList.add('out');
+        setTimeout(function () { t.remove(); }, 300);
+    }, duration);
+};
+(function () {
+    var _alert = window.alert;
+    window.alert = function (msg) {
+        if (typeof msg !== 'string') { _alert(msg); return; }
+        var type = (msg.includes('Ошибка') || msg.includes('❌')) ? 'error'
+                 : (msg.includes('успеш') || msg.includes('✅') || msg.includes('обновлено') || msg.includes('сохранён')) ? 'success'
+                 : 'info';
+        window.showToast(msg, type);
+    };
+}());
+
+// ===== ФИЛЬТРЫ ПО ЖАНРУ =====
+(function () {
+    var activeGenre = 'all';
+    function applyFilter() {
+        document.querySelectorAll('#gamesSection .card[data-game]').forEach(function (card) {
+            var g = games[card.getAttribute('data-game')];
+            var show = activeGenre === 'all' || (g && g.genres && g.genres.includes(activeGenre));
+            card.style.display = show ? '' : 'none';
+        });
+        document.querySelectorAll('#gamesSection section').forEach(function (sec) {
+            var cards = sec.querySelectorAll('.card[data-game]');
+            if (!cards.length) return;
+            var any = Array.from(cards).some(function (c) { return c.style.display !== 'none'; });
+            sec.style.display = any ? '' : 'none';
+        });
+    }
+    document.addEventListener('click', function (e) {
+        var btn = e.target.closest('.genre-btn');
+        if (!btn) return;
+        document.querySelectorAll('.genre-btn').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        activeGenre = btn.getAttribute('data-genre');
+        applyFilter();
+        if (window.gpTrackAction) window.gpTrackAction('filter');
+    });
+    var _orig = window.renderAllGalleries;
+    window.renderAllGalleries = function () {
+        if (_orig) _orig();
+        setTimeout(applyFilter, 80);
+    };
+}());
